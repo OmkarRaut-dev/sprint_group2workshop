@@ -1,10 +1,8 @@
-name: Blue Green deployment
+name: Blue Green deployment - Terraform apply for main Branch
 on:
   push:
     branches:
-      - main
-      - feature/dev1
-
+      main
 jobs:
   terraform-deploy:
     runs-on: ubuntu-latest
@@ -13,26 +11,19 @@ jobs:
       contents: read
       id-token: write
     steps:
-
       - name: Clone our repository
         uses: actions/checkout@v3
-      
-      - name: Branch name
-        run: echo running on branch ${GITHUB_REF##*/}
-
       - name: AWS Authentication
         uses: aws-actions/configure-aws-credentials@v1
         with:
           role-to-assume: arn:aws:iam::418607562056:role/github-actions-oidc
           aws-region: eu-west-1
-          role-session-name: GithubVPCDeploy
+          role-session-name: GithubEC2Deploy
       - name: Terraform Set up
         uses: hashicorp/setup-terraform@v1
       - name: Terraform initialization
         run: terraform init
       - name: Terraform planning
         run: terraform plan
-
-      - if : github.ref == 'refs/heads/main'
-        name: Terraform apply
+      - name: Terraform apply
         run: terraform apply -auto-approve
