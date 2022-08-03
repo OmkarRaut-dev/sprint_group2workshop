@@ -1,8 +1,8 @@
 terraform {
-    backend "s3" {
-        bucket = "talacademy-so1-tflab-bucket"
-        key = "talent-academy/sprint_1/terraform.tfstate"
-        region = "eu-west-1"
-        dynamodb_table = "terraform-lock"
-    }
+  backend "s3" {
+    bucket         = "talent-academy-pushpa-labs-tfstates"
+    key            = "talent-academy/group2_vpc/terraform.tfstates"
+    region         = "eu-west-1"
+    dynamodb_table = "terraform-lock"
+  }
 }
