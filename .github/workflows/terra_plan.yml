@@ -2,7 +2,9 @@ name: Blue Green deploy - Terraform plan for SUB-Branches
 on:
   push:
     branches:
-      - "*"
+      - "feature_vpc"
+      - "feature/dev1"
+      - "testbranch"
 jobs:
   terraform-deploy:
     runs-on: ubuntu-latest
