@@ -2,9 +2,9 @@ name: Blue Green deployment
 on:
   push:
     branches:
-      - main
-      - feature/dev1
-      - testbranch
+      - 'main'
+      - 'feature/dev1'
+      - 'testbranch'
 
 jobs:
   terraform-deploy:
