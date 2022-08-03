@@ -2,7 +2,9 @@ name: Blue Green deployment
 on:
   push:
     branches:
-      main
+      - main
+      - feature/dev1
+
 jobs:
   terraform-deploy:
     runs-on: ubuntu-latest
@@ -11,8 +13,13 @@ jobs:
       contents: read
       id-token: write
     steps:
+
       - name: Clone our repository
         uses: actions/checkout@v3
+      
+      - name: Branch name
+        run: echo running on branch ${GITHUB_REF##*/}
+
       - name: AWS Authentication
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -25,5 +32,7 @@ jobs:
         run: terraform init
       - name: Terraform planning
         run: terraform plan
-      - name: Terraform apply
+
+      - if : github.ref == 'refs/heads/main'
+        name: Terraform apply
         run: terraform apply -auto-approve
