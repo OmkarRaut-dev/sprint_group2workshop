@@ -4,6 +4,7 @@ on:
     branches:
       - main
       - feature/dev1
+      - testbranch
 
 jobs:
   terraform-deploy:
