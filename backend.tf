@@ -5,8 +5,4 @@ terraform {
         region = "eu-west-1"
         dynamodb_table = "terraform-lock"
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 587f20d (changed the conflicting backend)
