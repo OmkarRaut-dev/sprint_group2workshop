@@ -24,7 +24,7 @@ resource "aws_security_group" "web_server_sg" {
     from_port        = 22
     to_port          = 22
     protocol         = "tcp"
-    cidr_blocks      = ["202.12.82.6/32"]
+    cidr_blocks      = ["0.0.0.0/0"]
   }
 
   egress {
@@ -32,7 +32,6 @@ resource "aws_security_group" "web_server_sg" {
     to_port          = 0
     protocol         = "-1"
     cidr_blocks      = ["0.0.0.0/0"]
-    ipv6_cidr_blocks = ["::/0"]
   }
 
   tags = {
